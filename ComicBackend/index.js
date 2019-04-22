@@ -18,6 +18,9 @@ var con = mysql.createConnection(
 	}
 );
 
+
+require('event').EventEmitter.defaultMaxListeners=20; // Fix memory leaked
+
 //Create RESTFul
 var	app=express();
 var publicDir = (__dirname + '/public/'); //Set static direction for display image local by url

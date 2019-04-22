@@ -1,6 +1,7 @@
 package com.ancomic;
 
 import android.app.AlertDialog;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -36,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     TextView txt_comic;
 
 
+    SwipeRefreshLayout swipeRefreshLayout;
+
+
+
     @Override
     protected void onStop(){
         compositeDisposable.clear();
@@ -51,6 +56,49 @@ public class MainActivity extends AppCompatActivity {
          iComicAPI = Common.getAPI();
 
         //View
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+            android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+               if(Common.isConnectedToInternet(getBaseContext()))
+               {
+
+                   fetchBanner();
+
+                   fetchComic();
+               }
+
+                else
+               {
+                 Toast.makeText( context: MainActivity.this, text: "Cannot connected", Toast.LENGTH_SHORT).show();
+               }
+
+               }
+        });
+
+
+        // Load first time
+
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run(){
+                if(Common.isConnectedToInternet(getBaseContext()))
+                {
+
+                    fetchBanner();
+
+                    fetchComic();
+                }
+
+                else
+                {
+                    Toast.makeText(context:MainActivity.this, text: "Cannot connected", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         slider = (Slider)findViewById(R.id.banner_slider);
         slider.init(new PicassoImageLoadingService());
 
@@ -60,14 +108,13 @@ public class MainActivity extends AppCompatActivity {
 
         txt_comic=(TextView) findViewById(R.id.txt_comic);
 
-        fetchBanner();
 
-        fetchComic();
     }
 
     private void fetchComic() {
         final AlertDialog dialog=new SpotsDialog.Builder().setContext(this).setMessage("Please wait.........").setCancelable(false).build();
-        dialog.show();
+        if (!swipeRefreshLayout.isRefreshing())
+             dialog.show();
         compositeDisposable.add(iComicAPI.getComicList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -76,12 +123,17 @@ public class MainActivity extends AppCompatActivity {
                     public void accept(List<Comic> comics) throws Exception {
                         recycler_comic.setAdapter(new MyComicAdapter(getBaseContext(), comics));
                         txt_comic.setText(new StringBuilder("New Comic (").append(comics.size()).append(")"));
+                        if (!swipeRefreshLayout.isRefreshing())
                         dialog.dismiss();
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 }, new Consumer<Throwable>(){
                     @Override
                     public void accept(Throwable throwable) throws Exception{
-                        dialog.dismiss();
+                        if (!swipeRefreshLayout.isRefreshing())
+                            dialog.dismiss();
+                        swipeRefreshLayout.setRefreshing(false);
+
                         Toast.makeText(MainActivity.this,"Error while load comic", Toast.LENGTH_SHORT).show();
                     }
 
