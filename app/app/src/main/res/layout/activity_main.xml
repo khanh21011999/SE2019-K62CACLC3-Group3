@@ -15,27 +15,29 @@
         android:layout_height="match_parent">
 
         <!-- add logo here -->
-      <LinearLayout
-          android:orientation="horizontal"
-          android:padding="16dp"
-          android:weigthSum="9"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
 
-          <ImageView
-              android:scr="@drawable/comic"
-              android:layout_width="0dp"
-              android:layout_weight="8"
-              android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:weightSum ="9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-          <ImageView
-              android:id="@+id/btn_filter"
-              android:src="@drawable/ic_search_white_24dp"
-              android:layout_width="0dp"
-              android:layout_weight="1"
-              android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@drawable/comic"
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:layout_height="wrap_content" />
 
-      </LinearLayout>
+            <ImageView
+                android:id="@+id/btn_filter"
+                android:src="@drawable/ic_search_white_24dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
 
 
     <ss.com.bannerslider.Slider
@@ -54,7 +56,7 @@
 
         <TextView
             android:id="@+id/txt_comic"
-            android:text="NEW COMIC (10)"
+            android:text="NEW COMIC "
             android:textColor="@color/textColor"
             android:textSize="20sp"
             android:textStyle="bold"
