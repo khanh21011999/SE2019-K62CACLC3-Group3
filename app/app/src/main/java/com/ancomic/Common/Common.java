@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.ancomic.Model.Category;
 import com.ancomic.Model.Chapter;
 import com.ancomic.Model.Comic;
 import com.ancomic.Retrofit.IComicAPI;
@@ -19,6 +20,7 @@ public class Common {
     public static Chapter selected_chapter;
     public static int chapter_index=-1;
     public static List<Chapter> chapterList=new ArrayList<>();
+    public static List<Category> categories = new ArrayList<>();
     public static IComicAPI getAPI(){
         return RetrofitClient.getInstance().create(IComicAPI.class);
     }

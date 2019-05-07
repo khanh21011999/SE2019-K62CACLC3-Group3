@@ -19,7 +19,7 @@ var con = mysql.createConnection(
 );
 
 
-require('event').EventEmitter.defaultMaxListeners=20; // Fix memory leaked
+require('events').EventEmitter.defaultMaxListeners=20; // Fix memory leaked
 
 //Create RESTFul
 var	app=express();
@@ -47,7 +47,7 @@ app.get("/banner", (red, res, next)=>{
 );
 
 //Get all comic
-app.get("/comic", (red, res, next)=>{
+app.get("/comic", (req, res, next)=>{
 		con.query('SELECT * FROM manga', function(error, result, fields){
 			con.on('error', function(err){
 				console.log('[MY SQL ERROR]', err);
@@ -97,6 +97,62 @@ app.get("/links/:chapterid", (req, res, next)=>{
 				}
 			}
 		)
+	}
+);
+
+//Get all category
+app.get("/categories", (req, res, next)=>{
+		con.query('SELECT * FROM Category', function(error, result, fields){
+			con.on('error', function(err){
+				console.log('[MY SQL ERROR]', err);
+			});
+
+			if (result && result.length){
+				res.end(JSON.stringify(result));
+			}
+			else{
+					res.end(JSON.stringify("Category does not available"));
+				}
+			}
+		)
+	}
+);
+
+//Get all category
+app.post("/filter", (req, res, next)=>{
+		var post_data = req.body; // GET POST DATA from POST REQUEST
+		var array = JSON.parse(post_data.data); // Parse 'data' field from POST REQUEST TO JSON ARRAY
+		var query = " SELECT * FROM manga WHERE ID IN )SELECT ManggaID FROM mangacategory"; // default query
+		if (array.length > 0) {
+		    query += "GROUP BY MangaID";
+		    if (array.length == 1) // if user just submit 1 category
+		        query+= "HAVING SUM(CASE WHEN CategoryID = "+array[0]+" THEN 1 ELSE 0 END) > 0)";
+		    else {
+		        for (var i=0; i<array.length; i++)
+		        {
+		            if (i==0) // first condition
+		                query += "HAVING SUM(CASE WHEN CategoryID = "+array[0]+" THEN 1 ELSE 0 END) > 0 AND";
+		            else if (i == array.length -1) // last condition
+		                query += "SUM(CASE WHEN CategoryID ="+array[i]+" THEN 1 ELSE 0 END) >0)";
+		            else
+		                query += "SUM(CASE WHEN CategoryID ="+array[i]+" THEN 1 ELSE 0 END) >0 AND";
+		        }
+		    }
+
+		    con.query(query, function(error, result, fields){
+            			con.on('error', function(err){
+            				console.log('[MY SQL ERROR]', err);
+            			});
+
+            			if (result && result.length){
+            				res.end(JSON.stringify(result));
+            			}
+            			else{
+            					res.end(JSON.stringify("Comic does not available"));
+            				}
+            			}
+            		)
+		}
 	}
 );
 

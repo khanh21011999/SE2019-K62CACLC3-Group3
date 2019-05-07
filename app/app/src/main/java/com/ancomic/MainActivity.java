@@ -1,11 +1,14 @@
 package com.ancomic;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     SwipeRefreshLayout swipeRefreshLayout;
 
+    ImageView btn_search;
+
 
 
     @Override
@@ -56,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
          iComicAPI = Common.getAPI();
 
         //View
+        btn_search = (ImageView) findViewById(R.id.btn_filter);
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,CategoryFilter.class));
+            }
+        });
+
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
             android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark);
@@ -72,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                 else
                {
-                 Toast.makeText( context: MainActivity.this, text: "Cannot connected", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(MainActivity.this, "Cannot connected", Toast.LENGTH_SHORT).show();
                }
 
                }
@@ -94,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
                 else
                 {
-                    Toast.makeText(context:MainActivity.this, text: "Cannot connected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Cannot connected", Toast.LENGTH_SHORT).show();
                 }
             }
         });
