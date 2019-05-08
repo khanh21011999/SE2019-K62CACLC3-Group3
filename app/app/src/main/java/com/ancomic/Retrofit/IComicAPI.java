@@ -33,6 +33,9 @@ public interface IComicAPI {
     @POST("filter")
     @FormUrlEncoded
     Observable<List<Comic>> getFilteredComic(@Field("data") String data) ;
+    @POST("search")
+    @FormUrlEncoded
+    Observable<List<Comic>> getSearchedComic(@Field("search") String search) ;
 
 
 

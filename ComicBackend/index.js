@@ -14,7 +14,7 @@ var con = mysql.createConnection(
 		host: 'localhost',
 		user: 'root',
 		password: '', //Default password is blank
-		database: 'test'
+		database: 'testmanga'
 	}
 );
 
@@ -155,7 +155,26 @@ app.post("/filter", (req, res, next)=>{
 		}
 	}
 );
+//search
+app.post("/search",(req,res,next)=>{
+	var post_data=req.body; //get body post
+	var name_search=post_data.search;  //get 'search' data from post request
 
+	var query= "SELECT * FROM manga WHERE Name Like'%"+name_search+"%'";
+	con.query(query, function(error, result, fields){
+						con.on('error', function(err){
+							console.log('[MY SQL ERROR]', err);
+						});
+
+						if (result && result.length){
+							res.end(JSON.stringify(result));
+						}
+						else{
+								res.end(JSON.stringify("Comic does not available"));
+							}
+						}
+					)
+});
 //Start server
 app.listen(3000, ()=>{
 		console.log('Comic API is running on port 3000');

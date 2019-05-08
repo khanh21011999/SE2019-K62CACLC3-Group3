@@ -24,6 +24,16 @@
             android:layout_weight="1"
             android:background="@color/textColor"
             android:layout_width="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_search"
+            android:drawableLeft="@drawable/ic_search_white_24dp"
+            android:text="SEARCH"
+            android:textColor="@android:color/white"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
