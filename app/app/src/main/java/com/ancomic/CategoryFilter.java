@@ -104,6 +104,10 @@ public class CategoryFilter extends AppCompatActivity {
         alertDialog.show();
     }
 
+    /**
+     * tim kiem truyen
+     * @param String
+     */
     private void fetchSearchComic(String String) {
         compositeDisposable.add(iComicAPI.getSearchedComic(String)
                 .subscribeOn(Schedulers.io())
@@ -175,6 +179,9 @@ public class CategoryFilter extends AppCompatActivity {
                 }));
     }
 
+    /**
+     * phan chia loai truyen
+     */
     private  void fetchCategory() {
         compositeDisposable.add(iComicAPI.getCategoryList()
                 .subscribeOn(Schedulers.io())
