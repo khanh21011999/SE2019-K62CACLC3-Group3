@@ -122,7 +122,7 @@ app.get("/categories", (req, res, next)=>{
 app.post("/filter", (req, res, next)=>{
 		var post_data = req.body; // GET POST DATA from POST REQUEST
 		var array = JSON.parse(post_data.data); // Parse 'data' field from POST REQUEST TO JSON ARRAY
-		var query = " SELECT * FROM manga WHERE ID IN )SELECT ManggaID FROM mangacategory"; // default query
+		var query = " SELECT * FROM manga WHERE ID IN (SELECT MangaID FROM mangacategory"; // default query
 		if (array.length > 0) {
 		    query += "GROUP BY MangaID";
 		    if (array.length == 1) // if user just submit 1 category
