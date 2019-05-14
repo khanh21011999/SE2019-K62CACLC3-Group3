@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2019 at 03:32 AM
+-- Generation Time: May 14, 2019 at 06:13 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -40,7 +40,14 @@ CREATE TABLE `banner` (
 INSERT INTO `banner` (`ID`, `Link`) VALUES
 (1, 'http://10.0.2.2:3000/dragonball.png'),
 (2, 'http://10.0.2.2:3000/doreamon.png'),
-(3, 'http://10.0.2.2:3000/adventuretime.png');
+(3, 'http://10.0.2.2:3000/adventuretime.png'),
+(4, 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg/220px-Shingeki_no_Kyojin_manga_volume_1.jpg'),
+(5, 'https://pm1.narvii.com/7088/cbbb8a711640c6919a6f9c15cd81ad25b9aebe3dr1-750-417v2_hq.jpg'),
+(6, 'http://www.gamers.at/wp-content/uploads/2017/07/Seven_deadly_sins_PS4-1864x1048.jpg'),
+(7, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzuMMuEpCgAgoXbej3HOCMNCIj67mDdIKDaUMlYjNnM3FXuPQDpQ'),
+(8, 'https://vngamer.sgp1.digitaloceanspaces.com/2018/05/Bloodstained-Curse-of-the-Moon-Hero-Banner.png'),
+(9, 'https://www.comicsbeat.com/wp-content/uploads/2018/11/SALE-Banner.png'),
+(10, 'https://hb.imgix.net/e5715d9664c39e1102c05847920307cf465bfbf2.png?auto=compress,format&fit=crop&h=353&w=616&s=e6b6a9cfa02691633b1f79605eb71516');
 
 -- --------------------------------------------------------
 
@@ -147,7 +154,8 @@ INSERT INTO `chapter` (`ID`, `Name`, `MangaID`) VALUES
 (31, 'Vol.1 chapter 14 : Hot Hot In The Snow', 3),
 (32, 'Vol.1 chapter 15 : A Ghost Of The Lamp\'s Smoke', 3),
 (35, 'Doraemon vol.1 chapter 16 : Run! Uma-Take', 3),
-(36, 'Vol.2 chapter 17 : Test Memorizing Toast', 3);
+(36, 'Vol.2 chapter 17 : Test Memorizing Toast', 3),
+(60, 'Chapter 0: Prologue', 18);
 
 -- --------------------------------------------------------
 
@@ -186,7 +194,17 @@ INSERT INTO `link` (`ID`, `Link`, `ChapterID`) VALUES
 (18, 'https://s8.mkklcdnv8.com/mangakakalot/d2/doraemon/vol1_chapter_1_all_the_way_from_a_future_world/19.jpg', 13),
 (19, 'https://s8.mkklcdnv8.com/mangakakalot/d2/doraemon/vol1_chapter_1_all_the_way_from_a_future_world/20.jpg', 13),
 (21, 'https://s8.mkklcdnv8.com/mangakakalot/d2/doraemon/vol0_chapter_11/2.jpg', 14),
-(22, 'https://s8.mkklcdnv8.com/mangakakalot/d2/doraemon/vol0_chapter_11/3.jpg', 14);
+(22, 'https://s8.mkklcdnv8.com/mangakakalot/d2/doraemon/vol0_chapter_11/3.jpg', 14),
+(23, 'https://2.bp.blogspot.com/5ts6_FJW3P4UQtUKmKb87HLSNsBDfgSESzDZGRW9mRIfoCYIR6mJWEEYTCt2PuwEzeJlYjx-a5AE=s1600', 60),
+(24, 'https://2.bp.blogspot.com/riJjouJERJiqM2PxvEt5wYPl6ikQa7Gav9OoYPe4GSK5FkdPYylO0VgZLsjVjgi4X09E6zEKhhZ1=s1600', 60),
+(25, 'https://2.bp.blogspot.com/PDZRJ0ZOSsEoFJQQy5k70DeVR08EPI-hAUQxtB5GQT7OXdrlpxGP-2czwNYla9OmBl-K23bzlTL_=s1600', 60),
+(26, 'https://2.bp.blogspot.com/d74Yk_UqgZNjHImBN08Z5Y-63F6SY-f08fmBB9N3tzAH9v44oxeZe2Icp-Bft3-JKPKYQrC0AomU=s1600', 60),
+(27, 'https://2.bp.blogspot.com/P8-Prxul_kDLwukFXgcAx4hwcpJvq-J-YCSUzEvM8DHfJ2IobbH99VIi_6U8eVl_lF6t_7sD35ml=s1600', 60),
+(28, 'https://2.bp.blogspot.com/BP8fCgJR1fXLbNYZhV4TiNWP1ufpJRgUyZKFUhl9cNHPxyfCDWAi0A5UHBfg2PEdcflnEcekdWXJ=s1600', 60),
+(29, 'https://2.bp.blogspot.com/eUMRmE2Svh4K1LW_AE2jOyJ73FGSKelFJ33g168mJInhGsDHbdJCsDRMbLrMD5_lefkOzsJcs5If=s1600', 60),
+(30, 'https://2.bp.blogspot.com/iwad6_DME-cH7veAYpUGOM6RXg4QscXdl4DgraNJA1wbyRWlWyX6aSPiTEFZwB_TD4BmUzKk_R9M=s1600', 60),
+(31, 'https://2.bp.blogspot.com/RoTuaxaiW4rSYRxNOoUFu4-tV0jZ-YbQQyaVoVIm_vixiXOkG_9TLxKpFLTXAD3bOP99oqGMWJb3=s1600', 60),
+(32, 'https://2.bp.blogspot.com/gtvdCbbraaQTjTOkzhGsqP14I0shuAwwz0E-N_1lpt8MI-xXzR6tsciny5LwJe03gWrK3qOGCT51=s1600', 60);
 
 -- --------------------------------------------------------
 
@@ -221,7 +239,8 @@ INSERT INTO `manga` (`ID`, `Name`, `Image`) VALUES
 (14, 'DC Essential Graphic Novels 2016', 'https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/332255/332255._SX1280_QL80_TTD_.jpg'),
 (15, 'Aqua Man', 'https://d1466nnw0ex81e.cloudfront.net/n_iv/600/3723215.jpg'),
 (16, 'Variant Covers', 'https://insightcomics.com/wp-content/uploads/2018/09/76348-64734-cover.jpg'),
-(17, 'Batman', 'http://4.bp.blogspot.com/-UVWO6oyjJqU/U_3jLJzL3MI/AAAAAAAEnhQ/_SyLqkLRvVo/s1600/-000.jpg');
+(17, 'Batman', 'http://4.bp.blogspot.com/-UVWO6oyjJqU/U_3jLJzL3MI/AAAAAAAEnhQ/_SyLqkLRvVo/s1600/-000.jpg'),
+(18, 'Injustice: Gods among us', 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Injustice_Gods_Among_Us_Cover_Art.jpg/220px-Injustice_Gods_Among_Us_Cover_Art.jpg');
 
 -- --------------------------------------------------------
 
@@ -244,8 +263,8 @@ INSERT INTO `mangacategory` (`MangaID`, `CategoryID`) VALUES
 (2, 11),
 (2, 30),
 (2, 46),
-(3, 1),
-(3, 30);
+(3, 30),
+(3, 39);
 
 --
 -- Indexes for dumped tables
@@ -298,7 +317,7 @@ ALTER TABLE `mangacategory`
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -310,19 +329,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `chapter`
 --
 ALTER TABLE `chapter`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `link`
 --
 ALTER TABLE `link`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `manga`
 --
 ALTER TABLE `manga`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
